@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import BackToTop from "./Components/Header";
+import {AppDrawer} from "./Components/drawer";
+import { AppButtonsContainer} from "./Components/AppButtons";
+import {NewsContainer} from "./Components/News/News";
+import {Route} from "react-router-dom";
+import {SportNewsContainer} from "./Components/SportNews/SportNews"
+import {TechnologyNewsContainer} from "./Components/TechnologyNews/TechnologyNews";
+
+
+
+
+export default class App extends Component{
+
+    constructor(props) {
+        super(props);
+        this.state ={
+            isDrawerOpen: false
+        }
+    }
+
+  render() {
+    return(
+        <div >
+            <BackToTop onLeftIconClick={()=>{this.setState({isDrawerOpen:true})}}/>
+            <AppDrawer open={this.state.isDrawerOpen} onToggle={(isDrawerOpen)=>{this.setState({isDrawerOpen})}}/>
+            <AppButtonsContainer/>
+
+            <Route path={"/news"} render={ ()=> <NewsContainer/> }/>
+            <Route path={"/sport"} render={ ()=> <SportNewsContainer/> }/>
+            <Route path={"/technology"} render={ ()=> <TechnologyNewsContainer/> }/>
+
+
+        </div>
+    )
+  }
 }
-
-export default App;
