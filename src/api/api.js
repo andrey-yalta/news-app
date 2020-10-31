@@ -20,6 +20,7 @@ export const newsAPI = {
     getSportNews: () => {
         debugger;
         return (
+            // eslint-disable-next-line no-useless-concat
             instance.get('&category=sports&'+'apiKey=e09d633000034edcb94b88e6ee66ee9a')
                 .then(response => {
                     return response.data
@@ -29,6 +30,7 @@ export const newsAPI = {
     getTechnologyNews: () => {
         debugger;
         return (
+            // eslint-disable-next-line no-useless-concat
             instance.get('&category=technology&'+'apiKey=e09d633000034edcb94b88e6ee66ee9a')
                 .then(response => {
                     return response.data

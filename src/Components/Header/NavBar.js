@@ -7,9 +7,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {purple} from '@material-ui/core/colors';
-import MoreIcon from "@material-ui/icons/MoreVert";
-import SimpleMenu from "./News/simpleMenu";
-import {NavLink} from "react-router-dom";
+import SimpleMenu from "./simpleMenu";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
