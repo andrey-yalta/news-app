@@ -9,7 +9,7 @@ export  class NewsAPIContainer extends React.Component {
     }
     refreshTechnologyNews(){
         if (this.props.articles.length === 0) {
-            this.props.thunkCreator();
+            this.props.thunkCreator(this.props.language);
         }
     }
     render() {

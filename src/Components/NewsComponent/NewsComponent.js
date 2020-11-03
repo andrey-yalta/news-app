@@ -21,6 +21,7 @@ const NewsComponent = (getterArticles,thunkCreator )=>{
         return {
             isFetching: getIsFetching(state),
             articles: getterArticles(state),
+            language:state.news.language,
         };
     };
     return  connect(mapStateToProps, {thunkCreator})(NewsAPIContainer)

@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export default function TitlebarGridList(props) {
     const classes = useStyles();
     console.log(props.articles);
-    debugger;
+
     return (
         <div className={classes.root}>
             <GridList cellHeight={400} className={classes.gridList}>

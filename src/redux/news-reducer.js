@@ -1,4 +1,5 @@
 import {newsAPI} from "../api/api";
+import {Language} from "@material-ui/icons";
 
 let initialState ={
     articles: [],
@@ -8,15 +9,21 @@ let initialState ={
     healthArticles:[],
     currentValue:"",
     isFetching:false,
+    language:"ru",
 }
 
 let  newsReducer =(state = initialState,action)=>{
     switch (action.type) {
         case "SET-NEWS":{
             return { ...state, articles: [...action.articles]}}
+        case "SET-LANGUAGE":{
+
+            return { ...state, language: action.language}}
         case "SET-SPORT-NEWS":{
+
             return { ...state, sportArticles: [...action.articles]}}
         case "SET-TECHNOLOGY-NEWS":{
+
             return { ...state, technologyArticles: [...action.articles]}}
         case "SET-SCIENCE-NEWS":{
             return { ...state, scienceArticles: [...action.articles]}}
@@ -32,6 +39,7 @@ let  newsReducer =(state = initialState,action)=>{
 }
 
 export default newsReducer;
+export const setLanguage =(language)=>({type:"SET-LANGUAGE", language:language});
 export const setNews =(articles)=>({type:"SET-NEWS", articles:articles});
 export const setSportNews =(articles)=>({type:"SET-SPORT-NEWS", articles:articles});
 export const setTechnologyNews =(articles)=>({type:"SET-TECHNOLOGY-NEWS", articles:articles});
@@ -39,55 +47,31 @@ export const setScienceNews =(articles)=>({type:"SET-SCIENCE-NEWS", articles:art
 export const setHealthNews =(articles)=>({type:"SET-HEALTH-NEWS", articles:articles});
 export const toggleIsFetching =(isFetchingValue)=>({type:"TOGGLE-IS-FETCHING",isFetchingValue:isFetchingValue });
 
-export const setNewsThunkCreator=()=> {
+// надо сделать inicizlized приложения в начале и норм
+export const setLanguageUi=(language)=> {
+
+    return  (dispatch) => {
+        dispatch(setLanguage(language));
+        dispatch(setNewsThunkCreator(language));
+        dispatch(setSportNewsThunkCreator(language));
+        dispatch(setTechnologyNewsThunkCreator(language));
+        dispatch(setScienceNewsThunkCreator(language));
+        dispatch(setHealthNewsThunkCreator(language));
+    }
+}
+
+export const setHealthNewsThunkCreator =(language) => setThunkCreator(language,"health",setHealthNews );
+export const setScienceNewsThunkCreator =(language) => setThunkCreator(language,"science",setScienceNews );
+export const setTechnologyNewsThunkCreator =(language) => setThunkCreator(language,"technology",setTechnologyNews );
+export const setSportNewsThunkCreator =(language) => setThunkCreator(language,"sport",setSportNews );
+export const setNewsThunkCreator =(language) => setThunkCreator(language,"general",setNews );
+
+const setThunkCreator=(language,category,setNews)=> {
     return  (dispatch) => {
         dispatch(toggleIsFetching(true));
-        newsAPI.getNews()
+        newsAPI.getNews(language, category)
             .then(data => {
                 dispatch(setNews(data.articles));
-                dispatch(toggleIsFetching(false));
-            })
-    }
-}
-export const setSportNewsThunkCreator=()=> {
-    return  (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        newsAPI.getSportNews()
-            .then(data => {
-                dispatch(setSportNews(data.articles));
-                dispatch(toggleIsFetching(false));
-            })
-    }
-}
-
-export const setTechnologyNewsThunkCreator=()=> {
-    return  (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        newsAPI.getTechnologyNews()
-            .then(data => {
-                dispatch(setTechnologyNews(data.articles));
-                dispatch(toggleIsFetching(false));
-            })
-    }
-}
-
-export const setScienceNewsThunkCreator=()=> {
-    return  (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        newsAPI.getScienceNews()
-            .then(data => {
-                dispatch(setScienceNews(data.articles));
-                dispatch(toggleIsFetching(false));
-            })
-    }
-}
-
-export const setHealthNewsThunkCreator=()=> {
-    return  (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        newsAPI.getHealthNews()
-            .then(data => {
-                dispatch(setHealthNews(data.articles));
                 dispatch(toggleIsFetching(false));
             })
     }

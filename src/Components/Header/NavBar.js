@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {purple} from '@material-ui/core/colors';
-import SimpleMenu from "./simpleMenu";
+import SimpleMenu, {SimpleMenuContainer} from "./simpleMenu";
 import {NavLink} from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import {Drawer} from "@material-ui/core";
@@ -75,7 +75,7 @@ export default function ButtonAppBar(props) {
 
 
                     <IconButton aria-label="display more actions" edge="end" color="inherit">
-                        <SimpleMenu />
+                        <SimpleMenuContainer />
                     </IconButton>
 
 
