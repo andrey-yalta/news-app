@@ -5,6 +5,8 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import CustomizedDialogs from "../../Dialog/DIalog";
+import news from "../../../common/img/news.jpg"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         backgroundColor: theme.palette.background.paper,
     },
+
     gridList: {
         width: 1400,
         height: "100%",
@@ -23,46 +26,46 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 export default function TitlebarGridList(props) {
     const classes = useStyles();
-
+    console.log(props.articles);
+    debugger;
     return (
         <div className={classes.root}>
             <GridList cellHeight={400} className={classes.gridList}>
-                <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                {/*<GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>*/}
 
-                </GridListTile>
+                {/*</GridListTile>*/}
                 {props.articles.map((tile) => (
+
+
                     <GridListTile key={tile.url}>
-                        <img src={tile.urlToImage} alt={tile.title} />
+                        <CustomizedDialogs description={tile.description}
+                                           content={tile.content}
+                                           publishedAt={tile.publishedAt}
+                                           url={tile.url}
+                                           title={tile.title}
+                                            name={tile.source.name}>
+                        <img src={tile.urlToImage ? tile.urlToImage :news} alt={tile.title}  style={{width:"100%"}} />
+                            </CustomizedDialogs>
                         <GridListTileBar
                             title={tile.title}
                             subtitle={<span>by: {tile.author}</span>}
                             actionIcon={
+                                <a href={tile.url} target="_blank">
                                 <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
                                     <InfoIcon />
                                 </IconButton>
+                                </a>
                             }
                         />
+
                     </GridListTile>
+
+
+
                 ))}
+
             </GridList>
         </div>
 

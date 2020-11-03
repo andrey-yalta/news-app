@@ -10,3 +10,9 @@ export const getSportArticles =(state)  =>{
 export const getTechnologyArticles =(state)  =>{
     return  state.news.technologyArticles;
 }
+export const getScienceArticles =(state)  =>{
+    return  state.news.scienceArticles;
+}
+export const getHealthArticles =(state)  =>{
+    return  state.news.healthArticles;
+}

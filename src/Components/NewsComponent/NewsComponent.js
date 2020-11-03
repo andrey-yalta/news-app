@@ -1,7 +1,19 @@
 // import React from "react";
 import {connect} from "react-redux";
-import {setNewsThunkCreator, setSportNewsThunkCreator, setTechnologyNewsThunkCreator} from "../../redux/news-reducer";
-import {getArticles, getIsFetching, getSportArticles, getTechnologyArticles} from "../../redux/news-selectors";
+import {
+    setHealthNewsThunkCreator,
+    setNewsThunkCreator,
+    setScienceNewsThunkCreator,
+    setSportNewsThunkCreator,
+    setTechnologyNewsThunkCreator
+} from "../../redux/news-reducer";
+import {
+    getArticles, getHealthArticles,
+    getIsFetching,
+    getScienceArticles,
+    getSportArticles,
+    getTechnologyArticles
+} from "../../redux/news-selectors";
 import {NewsAPIContainer} from "./NewsAPIComponent";
 
 const NewsComponent = (getterArticles,thunkCreator )=>{
@@ -17,3 +29,5 @@ const NewsComponent = (getterArticles,thunkCreator )=>{
 export const NewsAppContainer = NewsComponent(getArticles,setNewsThunkCreator)
 export const SportNewsAppContainer = NewsComponent(getSportArticles,setSportNewsThunkCreator)
 export const TechnologyNewsAppContainer = NewsComponent(getTechnologyArticles,setTechnologyNewsThunkCreator)
+export const ScienceNewsAppContainer = NewsComponent(getScienceArticles,setScienceNewsThunkCreator)
+export const HealthNewsAppContainer = NewsComponent(getHealthArticles,setHealthNewsThunkCreator)

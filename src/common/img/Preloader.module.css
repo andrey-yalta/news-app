@@ -1,0 +1,13 @@
+div .preloader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.preloader h2{
+    color: #3f50b5;
+}
+.preloader img{
+    fill: black;
+}

@@ -1,5 +1,7 @@
 import React from "react";
 import {NewsApp} from "./News";
+import CustomizedDialogs from "../Dialog/DIalog";
+import {Preloader} from "../../common/Preloader";
 
 export  class NewsAPIContainer extends React.Component {
     componentDidMount() {
@@ -14,11 +16,12 @@ export  class NewsAPIContainer extends React.Component {
         console.log("render news")
         if (this.props.isFetching) {
             console.log("fetching true")
-            return (<div>Loading... </div>)
+            return ( <Preloader/>)
         } else {
             console.log("fetching false");
             return (
                 <NewsApp articles={this.props.articles} />
+                // <CustomizedDialogs articles={this.props.articles}/>
             )
         }
     }

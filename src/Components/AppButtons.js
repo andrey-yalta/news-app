@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import s from "./AppButtons.module.css"
 import DeleteIcon from '@material-ui/icons/Delete';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
+import CustomizedDialogs from "./Dialog/DIalog";
 
 const style={
     marginRight:20
@@ -24,10 +25,13 @@ export  const AppButtons = (props)=>{
             <button onClick={getNews}>get news</button><br/>
 
             <div className={s.buttons}>
-
                 <Button variant="contained" color="primary">
                     Primary
                 </Button>
+
+
+
+
                 <Button
                     variant="contained"
                     color="secondary"

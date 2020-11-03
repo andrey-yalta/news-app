@@ -8,6 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {purple} from '@material-ui/core/colors';
 import SimpleMenu from "./simpleMenu";
+import {NavLink} from "react-router-dom";
+import MenuItem from "@material-ui/core/MenuItem";
+import {Drawer} from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +23,12 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
+    navLink:{
+        marginRight:"10px",
+        color:"#fff",
+        textDecoration: "none",
+    },
+
 }));
 
 export default function ButtonAppBar(props) {
@@ -27,22 +36,41 @@ export default function ButtonAppBar(props) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" style={{background: purple }} >
+            <AppBar position="static" style={{background: purple}} >
                 <Toolbar>
                     <IconButton edge="start" onClick={props.onLeftIconClick} className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton>
+
+                    <NavLink  to="/news"  className={classes.navLink}>
                     <Typography variant="h6" style={{"flexGrow": "0.01"}} className={classes.title}>
                         Новости
                     </Typography>
+                    </NavLink>
 
+                    <NavLink  to="/sport" className={classes.navLink}>
                     <Typography variant="h6"  style={{"flexGrow": "0.01"}}className={classes.title}>
-                        Музыка
+                        Спорт
                     </Typography>
+                    </NavLink>
 
+                    <NavLink  to="/science" className={classes.navLink}>
+                        <Typography variant="h6"  style={{"flexGrow": "0.01"}}className={classes.title}>
+                            Наука
+                        </Typography>
+                    </NavLink>
+
+                    <NavLink  to="/health" className={classes.navLink}>
+                        <Typography variant="h6"  style={{"flexGrow": "0.01"}}className={classes.title}>
+                            Здоровье
+                        </Typography>
+                    </NavLink>
+
+                    <NavLink  to="/technology" className={classes.navLink} style={{flexGrow: "1",}}>
                     <Typography variant="h6"  className={classes.title}>
-                        Фильмы
+                        Технологии
                     </Typography>
+                    </NavLink>
                     <Button color="inherit">Login</Button>
 
 
